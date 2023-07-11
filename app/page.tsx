@@ -1,3 +1,8 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+const src = 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg';
+
 export default function Home() {
   return (
     <main className="bg-bg m-auto max-w-screen-md min-h-screen">
@@ -15,33 +20,33 @@ export default function Home() {
       <section className="mb-12">
         <div className="flex items-end justify-between mb-4">
           <h2 className="px-4 text-lg text-white">Latest Movies</h2>
-          <p className="px-2 text-sm text-white">See All</p>
+          <Link className="px-2 text-sm text-white" href="/latest-movies">See All</Link>
         </div>
         <div className="h-[11rem] overflow-hidden">
-          <ul className="overflow-auto pb-2 px-4 whitespace-nowrap">
+          <div className="overflow-auto pb-2 px-4 whitespace-nowrap">
             <Movie />
             <Movie />
             <Movie />
-          </ul>
+          </div>
         </div>
       </section>
       <section className="mb-12">
         <div className="flex items-end justify-between mb-4">
           <h2 className="px-4 text-lg text-white">Now Playing</h2>
-          <p className="px-2 text-sm text-white">See All</p>
+          <Link className="px-2 text-sm text-white" href="/now-playing">See All</Link>
         </div>
         <div className="h-[11rem] overflow-hidden">
-          <ul className="overflow-auto pb-2 px-4 whitespace-nowrap">
+          <div className="overflow-auto pb-2 px-4 whitespace-nowrap">
             <Movie />
             <Movie />
             <Movie />
-          </ul>
+          </div>
         </div>
       </section>
-      <nav>
-        <a>Home</a>
-        <a>Search</a>
-        <a>Favorites</a>
+      <nav className="flex items-center justify-center gap-8 p-8">
+        <Link className="text-white" href="/">Home</Link>
+        <Link className="text-white" href="/search">Search</Link>
+        <Link className="text-white" href="/favorites">Favorites</Link>
       </nav>
     </main>
   )
@@ -73,13 +78,20 @@ const Banner = ({ full }: { full?: boolean }) => {
 
 const Movie = () => {
   return (
-    <li className="inline-block mr-4 last:mr-0">
-      <img className="bg-[#8FACB3] h-[7.8rem] mb-4 rounded-md w-[9.7rem]" />
+    <Link className="inline-block mr-4 last:mr-0" href="/movie/120023">
+      <div className="h-[7.8rem] mb-4 rounded-md w-[9.7rem] relative overflow-hidden">
+        <Image
+          alt="Image movie"
+          fill
+          style={{ objectFit: 'cover', objectPosition: '0 0' }}
+          src={src}
+        />
+      </div>
       <h3 className="text-white text-sm">Matt Max: Fury Way</h3>
       <div className="flex items-center">
         <p className="mr-2 text-[0.625rem] text-white">7.5</p>
         <p className="opacity-40 text-[0.6875rem] text-white">1h 45min | action</p>
       </div>
-    </li>
+    </Link>
   )
 }
