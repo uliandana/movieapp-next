@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { Movie } from '../../components/Movie';
-import ic_search from '../../public/ic-search.svg'
+import { Movie } from '@/components/Movie';
+import ic_search from '@/public/ic-search.svg'
 
 export default function Favorites() {
   return (

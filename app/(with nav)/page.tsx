@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Movie } from '../components/Movie';
+import { Movie } from '../../components/Movie';
 
 export default function Home() {
   return (
