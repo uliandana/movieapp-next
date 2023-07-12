@@ -1,4 +1,5 @@
 'use client'
+import { Fragment, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -6,7 +7,6 @@ import ic_back from '@/public/ic-back.svg'
 import ic_share from '@/public/ic-share.svg'
 import ic_bookmark from '@/public/ic-bookmark.svg'
 import ic_play from '@/public/ic-play.svg'
-import { useState } from 'react'
 
 const data = {
   title: 'Matt Max: Fury Way',
@@ -62,7 +62,12 @@ export default function Movie() {
             <p className="bg-white/10 py-1 px-2 rounded-md">{data.duration}</p>
           </div>
           <ul className="flex gap-2 items-center justify-center mb-6">
-            {data.genre.map(i => <li className="opacity-80 text-xs" key={i}>{i}</li>)}
+            {data.genre.map((i, idx) => (
+              <Fragment key={idx}>
+                <li className="opacity-80 text-xs">{i}</li>
+                {idx + 1 < data.genre.length && <span className="text-[0.625rem]">•</span>}
+              </Fragment>
+            ))}
           </ul>
           <div className="flex gap-2 items-stretch">
             <button className="flex-1 bg-gradient-to-r from-[#D702FB] to-[#1A54FF] px-4 py-2 rounded-md text-[0.9375rem]">
