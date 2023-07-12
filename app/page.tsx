@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { Movie } from '../components/Movie';
 
-export const src = 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg';
-
 export default function Home() {
   return (
     <main className="bg-bg m-auto max-w-screen-md min-h-screen">
