@@ -10,11 +10,9 @@ export const Icon = (
     src:string,
   }
 ) => {
-  const h = `h-[${size}]`;
-  const w = `w-[${size}]`;
-  const c = [h, w, 'relative', className].filter(Boolean).join(' ');
+  const c = ['relative', className].filter(Boolean).join(' ');
   return (
-    <div className={c}>
+    <div className={c} style={{ height: size, width: size }}>
       <Image alt={alt} src={src} fill sizes={size} style={{ objectFit: fit }} />
     </div>
   );

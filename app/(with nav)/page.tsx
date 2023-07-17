@@ -9,7 +9,7 @@ interface Movie {
   poster: string,
 };
 
-const bearer = 'Bearer ';
+const bearer = `Bearer ${process.env.API_KEY}`;
 const headers = {
   'Authorization': bearer,
 };
