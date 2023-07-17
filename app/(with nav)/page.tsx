@@ -1,7 +1,48 @@
 import Link from 'next/link'
-import { Movie } from '../../components/Movie';
+import { Movie, MovieNew } from '../../components/Movie';
 
-export default function Home() {
+interface Movie {
+  id: number,
+  title: string,
+  rating: number,
+  genre: number,
+  poster: string,
+};
+
+const bearer = 'Bearer ';
+const headers = {
+  'Authorization': bearer,
+};
+
+const fetchMovie = async (url:string) => {
+  try {
+    const res = await fetch(url, { headers })
+    if (!res.ok) {
+      throw {};
+    }
+    const json = await res.json();
+    return json.results.map(((i: any) => ({
+      id: i?.id,
+      title: i?.title,
+      rating: i?.vote_average,
+      genre: i?.genre_ids?.[0],
+      poster: ['https://image.tmdb.org/t/p', 'w500', i?.poster_path].join('/'),
+    })));
+  } catch (e) {
+    return [];
+  }
+};
+
+const getPopular = async () => {
+  return await fetchMovie('https://api.themoviedb.org/3/movie/popular');
+};
+
+const getNowPlaying = async () => {
+  return await fetchMovie('https://api.themoviedb.org/3/movie/now_playing');
+};
+
+export default async function Home() {
+  const [popular, nowPlaying]: [Movie[], Movie[]] = await Promise.all([getPopular(), getNowPlaying()]);
   return (
     <main className="bg-bg m-auto max-w-screen-md min-h-screen">
       <h1 className="py-8 px-6 text-lg text-white">Home</h1>
@@ -22,9 +63,7 @@ export default function Home() {
         </div>
         <div className="h-[11rem] overflow-hidden">
           <div className="flex gap-4 overflow-auto pb-2 px-4 whitespace-nowrap">
-            <Movie />
-            <Movie />
-            <Movie />
+            {popular.slice(0, 5).map(i => <MovieNew key={i.id} item={i} />)}
           </div>
         </div>
       </section>
@@ -35,9 +74,7 @@ export default function Home() {
         </div>
         <div className="h-[11rem] overflow-hidden">
           <div className="flex gap-4 overflow-auto pb-2 px-4 whitespace-nowrap">
-            <Movie />
-            <Movie />
-            <Movie />
+            {nowPlaying.slice(0, 5).map(i => <MovieNew key={i.id} item={i} />)}
           </div>
         </div>
       </section>
