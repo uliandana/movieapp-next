@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ic_home from '@/public/ic-home.svg'
@@ -8,6 +7,7 @@ import ic_search from '@/public/ic-search.svg'
 import ic_search_active from '@/public/ic-search-active.svg'
 import ic_bookmark from '@/public/ic-bookmark.svg'
 import ic_bookmark_active from '@/public/ic-bookmark-active.svg'
+import { Icon } from '@/components/Icon'
 
 export default function Layout({
   children,
@@ -25,9 +25,7 @@ export default function Layout({
           { text: 'Favorites', href: '/favorites', icon: ic_bookmark, iconActive: ic_bookmark_active },
         ].map(i => (
           <Link className={`font-semibold text-[0.6875rem] ${pathname === i.href ? 'text-white' : 'text-[#6F6175]'}`} href={i.href} key={i.text}>
-            <div className="h-[1.125rem] w-[1.125rem] relative mx-auto mb-2">
-              <Image alt={i.text} src={pathname === i.href ? i.iconActive : i.icon} fill sizes="1.125rem" style={{ objectFit: 'contain' }} />
-            </div>
+            <Icon alt={i.text} className="mx-auto mb-2" fit="contain" src={pathname === i.href ? i.iconActive : i.icon} size="1.125rem" />
             {i.text}
           </Link>
         ))}

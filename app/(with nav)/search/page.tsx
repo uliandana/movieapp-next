@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { Movie } from '@/components/Movie';
 import ic_search from '@/public/ic-search.svg'
+import { Icon } from '@/components/Icon';
 
 export default function Favorites() {
   return (
@@ -11,9 +11,7 @@ export default function Favorites() {
           placeholder="What are you watching today"
           type="text"
         />
-        <div className="h-[1.5rem] w-[1.5rem] relative">
-          <Image alt="search" src={ic_search} fill sizes="1.5rem" style={{ objectFit: 'contain' }} />
-        </div>
+        <Icon alt="search" src={ic_search} size="1.5rem" fit="contain" />
       </header>
       <h1 className="py-4 px-6 text-base text-white">Popular Movies</h1>
       <section className="flex flex-wrap gap-4 pb-6 px-6">

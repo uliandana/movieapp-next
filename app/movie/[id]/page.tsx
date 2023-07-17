@@ -1,12 +1,12 @@
 'use client'
 import { Fragment, useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import ic_back from '@/public/ic-back.svg'
 import ic_share from '@/public/ic-share.svg'
 import ic_bookmark from '@/public/ic-bookmark.svg'
 import ic_play from '@/public/ic-play.svg'
+import { Icon } from '@/components/Icon'
 
 const data = {
   title: 'Matt Max: Fury Way',
@@ -43,14 +43,10 @@ export default function Movie() {
     <main className="bg-[#8FACB3] m-auto max-w-screen-md min-h-screen flex flex-col justify-between">
       <div className="p-6 flex items-center justify-between">
         <button className="bg-gray-700 rounded-md h-[1.875rem] w-[1.875rem] flex items-center justify-center" onClick={back}>
-          <div className="h-[1.25rem] w-[1.25rem] relative">
-            <Image alt="icon back" src={ic_back} fill sizes="1.25rem" style={{ objectFit: 'cover' }} />
-          </div>
+          <Icon alt="icon back" src={ic_back} size="1.25rem" fit="cover" />
         </button>
         <button className="bg-gray-700 rounded-md h-[1.875rem] w-[1.875rem] flex items-center justify-center">
-          <div className="h-[1.25rem] w-[1.25rem] relative">
-            <Image alt="icon share" src={ic_share} fill sizes="1.25rem" style={{ objectFit: 'cover' }} />
-          </div>
+          <Icon alt="icon share" src={ic_share} size="1.25rem" fit="cover" />
         </button>
       </div>
       <section className="bg-bg pb-10 max-h-[70vh] overflow-auto rounded-t-3xl sticky bottom-0">
@@ -74,9 +70,7 @@ export default function Movie() {
               Watch Trailer
             </button>
             <button className="bg-white p-4 rounded-md">
-              <div className="h-[1rem] w-[1rem] relative">
-                <Image alt="icon bookmark" src={ic_bookmark} fill sizes="1rem" style={{ objectFit: 'contain' }} />
-              </div>
+              <Icon alt="icon bookmark" src={ic_bookmark} size="1rem" fit="contain" />
             </button>
           </div>
         </header>
@@ -117,9 +111,7 @@ export default function Movie() {
                   </div>
                 </div>
                 <button className="bg-gray-700 rounded-full h-[2rem] w-[2rem] flex items-center justify-center">
-                  <div className="h-[1rem] w-[1rem] relative">
-                    <Image alt="icon play" src={ic_play} fill sizes="1rem" style={{ objectFit: 'cover' }} />
-                  </div>
+                  <Icon alt="icon play" src={ic_play} size="1rem" fit="cover" />
                 </button>
               </Link>
             ))}
